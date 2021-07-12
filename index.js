@@ -1,6 +1,13 @@
 // require your server and launch it here
-const server = require('./api/server');
+const express = require('express')
+const cors = require('cors')
+const postsRouter = require('./posts/posts-router')
+const server = express()
+server.use(express.json())
+server.use(cors())
+server.use('/api/posts', postsRouter)
 
-server.listen(4000, () => {
-    console.log('\n*** Server Running on http://localhost:4000 ***\n');
-});
+
+// server.get('/', (req, res) => res.send('API up and running'))
+
+server.listen(8000, () => console.log('API running on port 8000'))
